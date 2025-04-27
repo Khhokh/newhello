@@ -210,12 +210,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+const form = document.querySelector('.form--login');
 
-
-
+const form1 = document.querySelector('.sign-up-form');
 /////////////////////////////////////////////////////////////////////////
 document.addEventListener('DOMContentLoaded', () => {
-    const form = document.querySelector('.form--login');
     if (form) {
         form.addEventListener('submit', e => {
             e.preventDefault();
@@ -226,9 +225,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+
 document.addEventListener('DOMContentLoaded', () => {
-    const form = document.querySelector('.sign-up-form');
-    if (form) {
+    
+    if (form1) {
         form.addEventListener('submit', e => {
             e.preventDefault();
             const name = document.getElementById('name').value;
