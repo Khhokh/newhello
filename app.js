@@ -32,33 +32,39 @@ if(process.env.NODE_ENV ==='development'){
 
 
 //////////////////i have add for the cookie sending policy/////////////////// 
-app.use(
-  helmet.contentSecurityPolicy({
-    directives: {
-      defaultSrc: ["'self'"],
-      scriptSrc: ["'self'", "https://cdnjs.cloudflare.com"],
-      styleSrc: ["'self'", "https://fonts.googleapis.com"],
-      fontSrc: ["'self'", "https://fonts.gstatic.com"]
-    }
-  })
-);
+// app.use(
+//   helmet.contentSecurityPolicy({
+//     directives: {
+//       defaultSrc: ["'self'"],
+//       scriptSrc: ["'self'", "https://cdnjs.cloudflare.com"],
+//       styleSrc: ["'self'", "https://fonts.googleapis.com"],
+//       fontSrc: ["'self'", "https://fonts.gstatic.com"]
+//     }
+//   })
+// );
+
+app.use((req, res, next) => {
+  res.setHeader(
+    "Content-Security-Policy",
+    "default-src 'self'; connect-src 'self' http://127.0.0.1:3001"
+  );
+  next();
+});
 /////////////////////////////////////////////////////////////////////////////
 
 
 // limit request from the same api
-// const limiter = rateLimit({
-//   max:100,
-//   windowMs:60 * 60 * 1000,
-//   message:'Too Many Request from this Ip , placese try again in an  hour!'
-// })
+const limiter = rateLimit({
+  max:100,
+  windowMs:60 * 60 * 1000,
+  message:'Too Many Request from this Ip , placese try again in an  hour!'
+})
 
-//app.use('/api',limiter);
-app.set('trust proxy', 1);
-
+app.use('/api',limiter);
 
 
 //Body parse , reading data from body into req.body
-app.use(express.json({limit:'10kb'})); 
+//app.use(express.json({limit:'10kb'})); 
 app.use(express.urlencoded({extended:true,limit:'10kb'}))
 app.use(cookieParser());
 //Data sanitizations against noSQL query injections 
