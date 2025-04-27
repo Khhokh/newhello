@@ -9,7 +9,7 @@ const login =async (email, password) => {
     try{
         const res = await axios({
         method:'POST',
-        url:'http://127.0.0.1:3001/api/v1/users/login',
+        url:'/api/v1/users/login',
         data:{
             email,
             password
@@ -32,7 +32,7 @@ export const logOut = async() =>{
     try{
         const res = await axios({
             method:'GET',
-            url:'http://127.0.0.1:3001/api/v1/users/logOut'
+            url:'/api/v1/users/logOut'
         });
         if((res.data.status='success')) location.assign('/'); 
     }catch(err){
@@ -45,7 +45,7 @@ export const signUp = async(name,email,password,passwordConfirm ) =>{
         try{
             const res = await axios({
             method:'POST',
-            url:'http://127.0.0.1:3001/api/v1/users/signup',
+            url:'/api/v1/users/signup',
             data:{
                 name,
                 email,
@@ -85,7 +85,7 @@ export const bookAppointment = async (doctor,name, email, phone, dateOfBirth, pa
     try {
         const res = await axios({
             method: 'POST',
-            url: 'http://127.0.0.1:3001/api/v1/appointments/appoint',
+            url: '/api/v1/appointments/appoint',
             data: {
                 doctor,
                 name,
