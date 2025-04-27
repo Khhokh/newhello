@@ -54,13 +54,14 @@ app.use((req, res, next) => {
 
 
 // limit request from the same api
-const limiter = rateLimit({
-  max:100,
-  windowMs:60 * 60 * 1000,
-  message:'Too Many Request from this Ip , placese try again in an  hour!'
-})
+// const limiter = rateLimit({
+//   max:100,
+//   windowMs:60 * 60 * 1000,
+//   message:'Too Many Request from this Ip , placese try again in an  hour!'
+// })
 
-app.use('/api',limiter);
+//app.use('/api',limiter);
+//app.set('trust proxy', 1);
 
 
 //Body parse , reading data from body into req.body
