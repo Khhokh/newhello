@@ -213,6 +213,7 @@ document.addEventListener('DOMContentLoaded', () => {
 const form = document.querySelector('.form--login');
 
 const form1 = document.querySelector('.sign-up-form');
+const appointBtn = document.querySelector('.btn--green')
 /////////////////////////////////////////////////////////////////////////
 document.addEventListener('DOMContentLoaded', () => {
     if (form) {
@@ -295,10 +296,11 @@ document.addEventListener('DOMContentLoaded', () => {
 //   });
 
 
-document.querySelector('.btn--green').addEventListener('click', function () {
+if(appointBtn){
+    appointBtn.addEventListener('click', function () {
     // Get the tour name from the page (can be dynamically fetched)
     const tourName = document.querySelector('.heading-primary span').innerText;
   
     // Redirect to the /appointment page with the tour name as a query parameter
     window.location.href = `/appointment?tour=${encodeURIComponent(tourName)}`;
-  });
+  })};
